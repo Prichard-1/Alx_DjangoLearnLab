@@ -5,8 +5,8 @@
     <title>Admin Dashboard</title>
 </head>
 <body>
-    <h1>Welcome Admin</h1>
-    <p>You have full access to manage the system.</p>
+    <h1>Welcome, Admin!</h1>
+    <p>This page is restricted to users with the Admin role.</p>
 </body>
 </html>
 
