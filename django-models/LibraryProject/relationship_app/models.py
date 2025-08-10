@@ -59,4 +59,3 @@ class UserProfile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created and not hasattr(instance, 'userprofile'):
         UserProfile.objects.create(user=instance)
-
