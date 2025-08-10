@@ -3,15 +3,14 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import user_passes_test, permission_required
 from .models import Book, UserProfile
-from .forms import BookForm  # Make sure you’ve created this form
+from .forms import BookForm
 
 # 🔐 Authentication Views
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
+            login(request, form.get_user())
             return redirect('list_books')
     else:
         form = AuthenticationForm()
@@ -87,4 +86,3 @@ def delete_book(request, book_id):
         book.delete()
         return redirect('list_books')
     return render(request, 'relationship_app/delete_book.html', {'book': book})
-
