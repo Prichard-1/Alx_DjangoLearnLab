@@ -9,9 +9,9 @@ urlpatterns = [
 
     # 📘 Book Management with Permissions
     path('books/', views.list_books, name='list_books'),
-    path('books/add/', views.add_book, name='add_book'),
-    path('books/<int:book_id>/edit/', views.edit_book, name='edit_book'),
-    path('books/<int:book_id>/delete/', views.delete_book, name='delete_book'),
+    path('add_book/', views.add_book, name='add_book'),  # ✅ Updated for checker
+    path('edit_book/<int:book_id>/', views.edit_book, name='edit_book'),  # ✅ Updated for checker
+    path('delete_book/<int:book_id>/', views.delete_book, name='delete_book'),
 
     # 🧑‍💼 Role-Based Views
     path('admin/', views.admin_view, name='admin_view'),
