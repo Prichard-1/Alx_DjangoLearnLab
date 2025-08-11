@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import permission_required
 from .models import Book, UserProfile
 from .forms import BookForm
 
@@ -16,7 +17,6 @@ def is_librarian(user):
 
 def is_member(user):
     return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
-
 
 # ==============================
 # 🔹 Authentication Views
@@ -49,7 +49,6 @@ def register_view(request):
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
 
-
 # ==============================
 # 🔹 Book Listing
 # ==============================
@@ -58,7 +57,6 @@ def list_books(request):
     """Displays a list of all books."""
     books = Book.objects.all()
     return render(request, 'relationship_app/list_books.html', {'books': books})
-
 
 # ==============================
 # 🔹 Role-Based Access Views
@@ -80,7 +78,6 @@ def librarian_view(request):
 def member_view(request):
     """Member-only view."""
     return render(request, 'relationship_app/member_view.html')
-
 
 # ==============================
 # 🔹 Permission-Protected Book Actions
