@@ -2,28 +2,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# 🔐 SECURITY SETTINGS
-SECRET_KEY = 'django-insecure-t#q9qb28!*8o3i+r7_y+8bbl!j2rwf-1qu3a)-=3_e5m*jq$ky'
-DEBUG = False  # Never True in production
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+SECRET_KEY = 'your-secret-key-here'
 
-# ✅ Secure Headers
-SECURE_BROWSER_XSS_FILTER = True  # Enables XSS protection in browsers
-X_FRAME_OPTIONS = 'DENY'  # Prevents clickjacking
-SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevents MIME-type sniffing
+DEBUG = False
 
-# ✅ Secure Cookies
-CSRF_COOKIE_SECURE = True  # CSRF cookie sent only over HTTPS
-SESSION_COOKIE_SECURE = True  # Session cookie sent only over HTTPS
-
-# ✅ Enforce HTTPS (optional for local dev)
-SECURE_SSL_REDIRECT = True
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-
-# ✅ Custom User Model
-AUTH_USER_MODEL = 'bookshelf.CustomUser'
+ALLOWED_HOSTS = ['yourdomain.com', 'localhost', '127.0.0.1']
 
 # ✅ Installed Apps
 INSTALLED_APPS = [
@@ -33,7 +16,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'relationship_app',
     'bookshelf',  # Ensure bookshelf is listed
 ]
 
@@ -91,3 +73,29 @@ STATIC_URL = 'static/'
 
 # ✅ Default Primary Key
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ✅ HTTPS and Security Headers Configuration
+
+# Redirect all HTTP requests to HTTPS
+SECURE_SSL_REDIRECT = True
+
+# Enable HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# Trust the proxy's HTTPS header (important for deployments behind load balancers)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Ensure cookies are only sent over HTTPS
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# Prevent MIME-type sniffing
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Enable browser XSS protection
+SECURE_BROWSER_XSS_FILTER = True
+
+# Prevent clickjacking by disallowing framing
+X_FRAME_OPTIONS = 'DENY'
