@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .views import (
     BookListView,
     BookDetailView,
@@ -22,5 +22,6 @@ urlpatterns = [
 
     # Delete a book
     path('books/<int:pk>/delete/', BookDeleteView.as_view(), name='book-delete'),
+     path('api/', include('api.urls')),
 ]
 
