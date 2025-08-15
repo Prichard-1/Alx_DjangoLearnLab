@@ -1,19 +1,26 @@
 """
 Unit Testing Strategy for DRF APIs
 
-This test suite covers:
-- CRUD operations for Book model
-- Filtering by publication_year
-- Searching by title
-- Ordering by title
-- Permission enforcement for authenticated access
+This test suite validates the functionality and integrity of the Book model API endpoints.
+
+Coverage includes:
+- ✅ CRUD operations: create, retrieve, update, delete
+- 🔍 Filtering by publication_year
+- 🔎 Searching by title
+- 📊 Ordering by title
+- 🔐 Permission enforcement for authenticated and unauthenticated access
+- 🔑 Session-based authentication using self.client.login()
 
 How to run:
 $ python manage.py test api
 
-Expected:
-- All tests pass with correct status codes and data integrity
-- Failures indicate issues in views, serializers, or permissions
+Expected Results:
+- All tests should pass with correct status codes and response data
+- Failures may indicate issues in views, serializers, permissions, or authentication logic
+
+Note:
+- Tests use Django's built-in TestCase and DRF's APIClient
+- A separate test database is automatically used during execution
 """
 
 from django.test import TestCase
